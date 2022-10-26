@@ -1,0 +1,27 @@
+---
+testFramework:
+  enabled: false
+
+persistence:
+  type: pvc
+  enabled: true
+  accessModes:
+    - ReadWriteOnce
+  size: 8Gi
+  finalizers:
+    - kubernetes.io/pvc-protection
+  inMemory:
+    enabled: false
+
+adminUser: hantolini
+adminPassword: ciel0-tierr4-ang3l
+
+plugins:
+  - grafana-azure-monitor-datasource
+
+grafana.ini:
+  server:
+    root_url: http://hk8slab.antolini.ar/grafana
+    serve_from_sub_path: true
+  plugins:
+    plugin_admin_enabled: true

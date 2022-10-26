@@ -1,0 +1,16 @@
+service:
+  type: ClusterIP
+
+resources:
+  requests:
+    cpu: 10m
+    memory: 32Mi
+  limits:
+    cpu: 1000m
+    memory: 512Mi
+
+persistence:
+  size: "8Gi"
+  annotations: {}
+  storageClass:
+  

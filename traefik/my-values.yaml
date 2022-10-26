@@ -1,0 +1,15 @@
+image:
+  tag: "2.5.1"
+logs:
+  general:
+    level: INFO
+  access:
+    enabled: true
+    format: json
+resources:
+    requests:
+      cpu: "10m"
+      memory: "50Mi"
+    limits:
+      cpu: "1000m"
+      memory: "500Mi"

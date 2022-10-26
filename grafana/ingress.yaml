@@ -1,0 +1,32 @@
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: grafana
+  namespace: hmonitor
+
+spec:
+  entryPoints:
+    - web
+  routes:
+  - kind: Rule
+    match: PathPrefix(`/grafana{regex:$$|/.*}`)
+    services:
+    - kind: Service
+      name: grafana
+      namespace: hmonitor
+      passHostHeader: true
+      port: 80
+      scheme: http
+
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: grafanaprefix
+  namespace: hmonitor
+
+spec:
+  stripPrefix:
+    prefixes:
+      - "/grafana"

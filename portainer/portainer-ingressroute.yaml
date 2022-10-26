@@ -1,0 +1,28 @@
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: stripprefix
+  namespace: portainer
+spec:
+  stripPrefix:
+    prefixes:
+      - /portainer
+
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: portainer
+spec:
+  entryPoints:
+    - web
+  routes:
+    - kind: Rule
+      match: PathPrefix(`/portainer`)
+      services:
+        - name: portainer
+          port: 9000
+      middlewares:
+        - name: stripprefix
+          namespace: portainer
